@@ -1,3 +1,12 @@
 <resources>
     <string name="app_name">TestProjectZazend</string>
+    <string name="enter_seed">Enter seed</string>
+    <string name="apply">Apply</string>
+    <string name="current_seed">Current seed</string>
+    <string name="search">Search...</string>
+    <string name="clear">Clear</string>
+    <string name="firstname">firstName</string>
+    <string name="lastname">lastName</string>
+    <string name="mm_dd_yyyy">mm/dd/yyyy</string>
+    <string name="age">Age:</string>
 </resources>

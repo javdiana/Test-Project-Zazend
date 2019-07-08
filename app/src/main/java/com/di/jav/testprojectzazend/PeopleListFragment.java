@@ -64,7 +64,7 @@ public class PeopleListFragment extends Fragment implements View.OnClickListener
         }
     }
 
-    private class PeopleViewHolder extends RecyclerView.ViewHolder{
+    private class PeopleViewHolder extends RecyclerView.ViewHolder {
         private ImageView mPhotoImageView;
         private TextView mFirstNameTextView;
         private TextView mLastNameTextView;
@@ -80,16 +80,16 @@ public class PeopleListFragment extends Fragment implements View.OnClickListener
             mAgeTextView = itemView.findViewById(R.id.textView_age);
         }
 
-        public void bind(Person person){
+        public void bind(Person person) {
             mPhotoImageView.setImageBitmap(person.getPhoto());
             mFirstNameTextView.setText(person.getFirstName());
             mLastNameTextView.setText(person.getLastName());
             mDateOfBirthTextView.setText(person.toString());
-            mAgeTextView.setText(person.getAge());//
+            mAgeTextView.setText(String.format("%d %d", R.string.age, person.getAge()));
         }
     }
 
-    private class PeopleAdapter extends RecyclerView.Adapter<PeopleViewHolder>{
+    private class PeopleAdapter extends RecyclerView.Adapter<PeopleViewHolder> {
         private List<Person> mPeople;
 
         public PeopleAdapter(List<Person> people) {
