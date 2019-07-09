@@ -1,0 +1,9 @@
+
+zsquid:S1450"\Remove the "mSeedEditText" field and declare it as a local variable in the relevant methods.(‹‰œÑ8§ßÜ‹½-
+†squid:S1450"cRemove the "mCurrentSeedTextView" field and declare it as a local variable in the relevant methods.(³ÃÜ¶þÿÿÿÿ8§ßÜ‹½-
+Usquid:S1135F"2Complete the task associated to this TODO comment.(­ûà¸üÿÿÿÿ8¦úÁ•½-
+\"squid:SwitchLastCaseIsDefaultCheckD""Add a default case to this switch.(×“¾ñùÿÿÿÿ8¦úÁ•½-
+Osquid:S1068"1Remove this unused "mSeedEditText" private field.(‹‰œÑ8§ßÜ‹½-
+nsquid:S1301D"KReplace this "switch" statement by "if" statements to increase readability.(×“¾ñùÿÿÿÿ8¦úÁ•½-
+[squid:S1068"8Remove this unused "mCurrentSeedTextView" private field.(³ÃÜ¶þÿÿÿÿ8§ßÜ‹½-
+Osquid:S1135)"2Complete the task associated to this TODO comment.(ºàþ8ðÛÖŽ½-
