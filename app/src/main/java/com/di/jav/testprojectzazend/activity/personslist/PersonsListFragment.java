@@ -7,6 +7,8 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -46,6 +48,7 @@ public class PersonsListFragment extends Fragment implements View.OnClickListene
 
     private List<Person> mPeople;
     private String mSeed;
+
     public static PersonsListFragment newInstance() {
         return new PersonsListFragment();
     }
@@ -80,10 +83,26 @@ public class PersonsListFragment extends Fragment implements View.OnClickListene
         mCurrentSeedTextView = view.findViewById(R.id.textView_current_seed);
 
         mSearchEditText = view.findViewById(R.id.editText_search);
+        mSearchEditText.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+                if (count >= 3) {
+                    findByFirstOrLastName(mSearchEditText.getText().toString());
+                }
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
         Button clearButton = view.findViewById(R.id.button_clear);
         clearButton.setOnClickListener(this);
-
-//        initAdapter(mPeople);
 
         return view;
     }
@@ -104,10 +123,11 @@ public class PersonsListFragment extends Fragment implements View.OnClickListene
                 mSeed = mSeedEditText.getText().toString();
                 mCurrentSeedTextView.setText(mSeed);
                 getPeople(NUMBER_OF_PERSONS, mSeed);
-                mCurrentSeedTextView.setText("Current seed: "+mSeed);
+                mCurrentSeedTextView.setText("Current seed: " + mSeed);
                 break;
             case R.id.button_clear:
                 mSearchEditText.setText("");
+                getPeople(NUMBER_OF_PERSONS, "");
                 break;
         }
     }
@@ -177,14 +197,14 @@ public class PersonsListFragment extends Fragment implements View.OnClickListene
             mFirstNameTextView.setText(person.getName().getFirstName());
             mLastNameTextView.setText(person.getName().getLastName());
             mDateOfBirthTextView.setText(person.getDateOfBirthday().getDate());
-            mAgeTextView.setText("Age: "+person.getDateOfBirthday().getAge());
+            mAgeTextView.setText("Age: " + person.getDateOfBirthday().getAge());
 
             mPerson = person;
         }
 
         @Override
         public void onClick(View v) {
-            Intent intent = new Intent(getActivity(), PersonActivity.class);//newIntent(mPerson);
+            Intent intent = newIntent(mPerson);
             startActivity(intent);
         }
 
