@@ -4,45 +4,45 @@ import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
 public class Name {
-    @SerializedName("mr")
+    @SerializedName("title")
     @Expose
-    private String mr;
+    private String title;
 
     @SerializedName("first")
     @Expose
-    private String first;
+    private String firstName;
 
     @SerializedName("last")
     @Expose
-    private String last;
+    private String lastName;
 
-    public Name(String mr, String first, String last) {
-        this.mr = mr;
-        this.first = first;
-        this.last = last;
+    public Name(String title, String firstName, String lastName) {
+        this.title = title;
+        this.firstName = firstName;
+        this.lastName = lastName;
     }
 
-    public String getMr() {
-        return mr;
+    public String getTitle() {
+        return title;
     }
 
-    public void setMr(String mr) {
-        this.mr = mr;
+    public void setTitle(String title) {
+        this.title = title;
     }
 
-    public String getFirst() {
-        return first;
+    public String getFirstName() {
+        return firstName;
     }
 
-    public void setFirst(String first) {
-        this.first = first;
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
     }
 
-    public String getLast() {
-        return last;
+    public String getLastName() {
+        return lastName;
     }
 
-    public void setLast(String last) {
-        this.last = last;
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
     }
 }

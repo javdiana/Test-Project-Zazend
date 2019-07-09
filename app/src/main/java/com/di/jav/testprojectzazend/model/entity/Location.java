@@ -26,9 +26,9 @@ public class Location {
 
     @SerializedName("timezone")
     @Expose
-    private Coordinates timezone;
+    private Timezone timezone;
 
-    public Location(String street, String city, String state, String postcode, Coordinates coordinates, Coordinates timezone) {
+    public Location(String street, String city, String state, String postcode, Coordinates coordinates, Timezone timezone) {
         this.street = street;
         this.city = city;
         this.state = state;
@@ -77,11 +77,11 @@ public class Location {
         this.coordinates = coordinates;
     }
 
-    public Coordinates getTimezone() {
+    public Timezone getTimezone() {
         return timezone;
     }
 
-    public void setTimezone(Coordinates timezone) {
+    public void setTimezone(Timezone timezone) {
         this.timezone = timezone;
     }
 }

@@ -6,30 +6,30 @@ import com.google.gson.annotations.SerializedName;
 public class Id {
     @SerializedName("name")
     @Expose
-    private Long name;
+    private String name;
 
     @SerializedName("value")
     @Expose
-    private Long value;
+    private String value;
 
-    public Id(Long name, Long value) {
+    public Id(String name, String value) {
         this.name = name;
         this.value = value;
     }
 
-    public Long getName() {
+    public String getName() {
         return name;
     }
 
-    public void setName(Long name) {
+    public void setName(String name) {
         this.name = name;
     }
 
-    public Long getValue() {
+    public String getValue() {
         return value;
     }
 
-    public void setValue(Long value) {
+    public void setValue(String value) {
         this.value = value;
     }
 }

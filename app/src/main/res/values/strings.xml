@@ -1,12 +1,24 @@
 <resources>
     <string name="app_name">TestProjectZazend</string>
+
+    <!--persons list-->
     <string name="enter_seed">Enter seed</string>
     <string name="apply">Apply</string>
     <string name="current_seed">Current seed</string>
-    <string name="search">Search...</string>
+    <string name="search">Search…</string>
     <string name="clear">Clear</string>
     <string name="firstname">firstName</string>
     <string name="lastname">lastName</string>
     <string name="mm_dd_yyyy">mm/dd/yyyy</string>
     <string name="age">Age:</string>
+
+    <!--toast-->
+    <string name="could_not_load_data">Could not load data</string>
+
+    <!--person-->
+    <string name="firstlast_lastname">firstlast + lastname</string>
+    <string name="birth">Bith:</string>
+    <string name="gender">Gender:</string>
+    <string name="location">Location:</string>
+    <string name="email">Email:</string>
 </resources>

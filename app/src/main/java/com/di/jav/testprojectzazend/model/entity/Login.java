@@ -8,7 +8,7 @@ import java.util.UUID;
 public class Login {
     @SerializedName("uuid")
     @Expose
-    private UUID uuid;
+    private String uuid;
 
     @SerializedName("username")
     @Expose
@@ -34,7 +34,7 @@ public class Login {
     @Expose
     private String sha256;
 
-    public Login(UUID uuid, String username, String password, String salt, String md5, String sha1, String sha256) {
+    public Login(String uuid, String username, String password, String salt, String md5, String sha1, String sha256) {
         this.uuid = uuid;
         this.username = username;
         this.password = password;
@@ -44,11 +44,11 @@ public class Login {
         this.sha256 = sha256;
     }
 
-    public UUID getUuid() {
+    public String getUuid() {
         return uuid;
     }
 
-    public void setUuid(UUID uuid) {
+    public void setUuid(String uuid) {
         this.uuid = uuid;
     }
 

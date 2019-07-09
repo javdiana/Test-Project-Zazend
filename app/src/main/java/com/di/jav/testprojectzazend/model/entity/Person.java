@@ -4,25 +4,17 @@ import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
 public class Person {
-    @SerializedName("id")
+    @SerializedName("gender")
     @Expose
-    private Id mId;
+    private String gender;
 
     @SerializedName("name")
     @Expose
     private Name mName;
 
-    @SerializedName("gender")
+    @SerializedName("location")
     @Expose
-    private String gender;
-
-    @SerializedName("dob")
-    @Expose
-    private DateOfBirthday mDateOfBirth;
-
-    @SerializedName("picture")
-    @Expose
-    private Picture mPicture;
+    private Location location;
 
     @SerializedName("email")
     @Expose
@@ -31,6 +23,10 @@ public class Person {
     @SerializedName("login")
     @Expose
     private Login login;
+
+    @SerializedName("dob")
+    @Expose
+    private DateOfBirthday dateOfBirth;
 
     @SerializedName("registered")
     @Expose
@@ -44,6 +40,14 @@ public class Person {
     @Expose
     private String cell;
 
+    @SerializedName("id")
+    @Expose
+    private Id mId;
+
+    @SerializedName("picture")
+    @Expose
+    private Picture mPicture;
+
     @SerializedName("nat")
     @Expose
     private String nat;
@@ -52,7 +56,7 @@ public class Person {
         mId = id;
         mName = name;
         this.gender = gender;
-        mDateOfBirth = dateOfBirth;
+        this.dateOfBirth = dateOfBirth;
         mPicture = picture;
         this.email = email;
         this.login = login;
@@ -60,6 +64,14 @@ public class Person {
         this.phone = phone;
         this.cell = cell;
         this.nat = nat;
+    }
+
+    public Location getLocation() {
+        return location;
+    }
+
+    public void setLocation(Location location) {
+        this.location = location;
     }
 
     public Id getId() {
@@ -79,11 +91,11 @@ public class Person {
     }
 
     public DateOfBirthday getDateOfBirth() {
-        return mDateOfBirth;
+        return dateOfBirth;
     }
 
     public void setDateOfBirth(DateOfBirthday dateOfBirth) {
-        mDateOfBirth = dateOfBirth;
+        this.dateOfBirth = dateOfBirth;
     }
 
     public Picture getPicture() {

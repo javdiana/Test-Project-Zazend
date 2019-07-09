@@ -3,23 +3,21 @@ package com.di.jav.testprojectzazend.model.entity;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-import java.util.List;
-
 public class Result {
     @SerializedName("results")
     @Expose
-    private List<Person> mPerson;
+    private Person[] mPerson;
 
     @SerializedName("info")
     @Expose
     private Info info;
 
-    public List<Person> getPerson() {
+    public Person[] getPerson() {
         return mPerson;
     }
 
-    public void setPerson(List<Person> person) {
-        this.mPerson = person;
+    public void setPerson(Person[] person) {
+        mPerson = person;
     }
 
     public Info getInfo() {
