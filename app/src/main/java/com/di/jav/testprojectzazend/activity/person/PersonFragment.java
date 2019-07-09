@@ -49,8 +49,8 @@ public class PersonFragment extends Fragment {
         int width = metrics.heightPixels;
         int height = metrics.widthPixels;
 
-        mLargeImageView.setMinimumHeight(height - height / 3);
-        mLargeImageView.setMinimumWidth(width - 16);
+        mLargeImageView.setMinimumHeight(height - height / 20);
+        mLargeImageView.setMinimumWidth(width - 8);
         int i = 0;
     }
 }

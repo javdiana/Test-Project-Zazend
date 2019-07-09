@@ -37,7 +37,7 @@ public class UserGeneratorClient {
         api = retrofit.create(IUserGeneratorService.class);
     }
 
-    public Observable<Result> getPeople(int numberOfPersons) {
-        return api.getPeople(numberOfPersons);
+    public Observable<Result> getPeople(int numberOfPersons, String seed) {
+        return api.getPeople(numberOfPersons, seed);
     }
 }

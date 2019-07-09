@@ -22,7 +22,9 @@ import com.di.jav.testprojectzazend.activity.person.PersonActivity;
 import com.di.jav.testprojectzazend.model.entity.Person;
 import com.di.jav.testprojectzazend.model.entity.Result;
 import com.di.jav.testprojectzazend.model.service.http.UserGeneratorClient;
+import com.squareup.picasso.Picasso;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -33,15 +35,17 @@ import rx.schedulers.Schedulers;
 
 public class PersonsListFragment extends Fragment implements View.OnClickListener {
     private static final String TAG = PersonsListFragment.class.getSimpleName();
+    private static final int NUMBER_OF_PERSONS = 100;
 
     private EditText mSeedEditText;
     private EditText mSearchEditText;
     private TextView mCurrentSeedTextView;
-    private RecyclerView peopleRecyclerView;
+    private RecyclerView mPeopleRecyclerView;
 
     private Subscription mSubscription;
 
     private List<Person> mPeople;
+    private String seed;
 
     public static PersonsListFragment newInstance() {
         return new PersonsListFragment();
@@ -51,7 +55,8 @@ public class PersonsListFragment extends Fragment implements View.OnClickListene
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        getPeople(100);
+        seed = "";
+        getPeople(NUMBER_OF_PERSONS, seed);
     }
 
     @Override
@@ -66,8 +71,9 @@ public class PersonsListFragment extends Fragment implements View.OnClickListene
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_people_list, container, false);
-        peopleRecyclerView = view.findViewById(R.id.recyclerView_people);
-        peopleRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
+        mPeopleRecyclerView = view.findViewById(R.id.recyclerView_people);
+        mPeopleRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
+        mPeopleRecyclerView.setOnClickListener(this);
 
         mSeedEditText = view.findViewById(R.id.editText_seed);
         Button applyButton = view.findViewById(R.id.button_apply);
@@ -85,7 +91,7 @@ public class PersonsListFragment extends Fragment implements View.OnClickListene
 
     private void initAdapter(List<Person> people) {
         try {
-            peopleRecyclerView.setAdapter(new PeopleAdapter(people));
+            mPeopleRecyclerView.setAdapter(new PeopleAdapter(people));
         } catch (NullPointerException npe) {
             Log.e(TAG, npe.getMessage());
             Toast.makeText(getActivity(), R.string.could_not_load_data, Toast.LENGTH_SHORT).show();
@@ -97,18 +103,38 @@ public class PersonsListFragment extends Fragment implements View.OnClickListene
         switch (v.getId()) {
             case R.id.button_apply:
                 // TODO: 7/8/2019 change seed
-                Intent intent = new Intent(getActivity(), PersonActivity.class);
-                startActivity(intent);
+                seed = mSeedEditText.getText().toString();
+                mCurrentSeedTextView.setText(seed);
+                getPeople(NUMBER_OF_PERSONS, seed);
                 break;
             case R.id.button_clear:
                 mSearchEditText.setText("");
                 break;
+            case R.id.recyclerView_people:
+                Intent intent = new Intent(getActivity(), PersonActivity.class);
+//                intent.putExtra()
+                startActivity(intent);
+                break;
         }
     }
 
-    private void getPeople(int numberOfPersons) {
+    private void findByFirstOrLastName(String key) {
+        List<Person> result = new ArrayList<>();
+        for (Person person : mPeople) {
+            if (person.getName().getFirstName().toLowerCase()
+                    .contains(key.toLowerCase()) ||
+                person.getName().getLastName().toLowerCase()
+                    .contains(key.toLowerCase())
+            ) {
+                result.add(person);
+            }
+        }
+        initAdapter(result);
+    }
+
+    private void getPeople(int numberOfPersons, String seed) {
         mSubscription = UserGeneratorClient.getInstance()
-                .getPeople(numberOfPersons)
+                .getPeople(numberOfPersons, seed)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Observer<Result>() {
@@ -127,7 +153,7 @@ public class PersonsListFragment extends Fragment implements View.OnClickListene
                     public void onNext(Result result) {
                         Log.d(TAG, "In onNext()");
                         mPeople = Arrays.asList(result.getPerson());
-                       initAdapter(mPeople);
+                        initAdapter(mPeople);
                     }
                 });
 
@@ -150,11 +176,11 @@ public class PersonsListFragment extends Fragment implements View.OnClickListene
         }
 
         public void bind(Person person) {
-            // mPhotoImageView.setImageBitmap(person.getPicture().getThumbnail());
+            Picasso.get().load(person.getPicture().getThumbnail()).into(mPhotoImageView);
             mFirstNameTextView.setText(person.getName().getFirstName());
             mLastNameTextView.setText(person.getName().getLastName());
             mDateOfBirthTextView.setText(person.getDateOfBirth().getDate());
-            mAgeTextView.setText(R.string.age + " " + person.getDateOfBirth().getAge());
+            mAgeTextView.setText(new StringBuilder().append(R.string.age).append(" ").append(person.getDateOfBirth().getAge()).toString());
         }
     }
 
