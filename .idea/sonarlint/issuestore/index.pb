@@ -37,3 +37,7 @@ Kapp/src/main/java/com/di/jav/testprojectzazend/model/entity/Registered.java,d\
 \app/src/main/java/com/di/jav/testprojectzazend/model/service/http/IUserGeneratorService.java,a\a\aa56b54d0bfcdf4738708b83259b13dd2696cba7
 Š
 Zapp/src/main/java/com/di/jav/testprojectzazend/model/service/http/UserGeneratorClient.java,1\4\14bec3df6530b94ba4925e8bac6f3911dbd2f17a
+‚
+Rapp/src/main/java/com/di/jav/testprojectzazend/activity/person/PersonActivity.java,2\f\2f82e37d98daba09bd9de94db715f41616f7c1fc
+‚
+Rapp/src/main/java/com/di/jav/testprojectzazend/activity/person/PersonFragment.java,b\6\b6c6df44a5b2169b8da6dc894dbd456153dc48e3

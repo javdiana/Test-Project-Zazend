@@ -45,8 +45,7 @@ public class PersonsListFragment extends Fragment implements View.OnClickListene
     private Subscription mSubscription;
 
     private List<Person> mPeople;
-    private String seed;
-
+    private String mSeed;
     public static PersonsListFragment newInstance() {
         return new PersonsListFragment();
     }
@@ -55,8 +54,8 @@ public class PersonsListFragment extends Fragment implements View.OnClickListene
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        seed = "";
-        getPeople(NUMBER_OF_PERSONS, seed);
+        mSeed = "";
+        getPeople(NUMBER_OF_PERSONS, mSeed);
     }
 
     @Override
@@ -73,13 +72,13 @@ public class PersonsListFragment extends Fragment implements View.OnClickListene
         View view = inflater.inflate(R.layout.fragment_people_list, container, false);
         mPeopleRecyclerView = view.findViewById(R.id.recyclerView_people);
         mPeopleRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
-        mPeopleRecyclerView.setOnClickListener(this);
 
         mSeedEditText = view.findViewById(R.id.editText_seed);
         Button applyButton = view.findViewById(R.id.button_apply);
         applyButton.setOnClickListener(this);
 
         mCurrentSeedTextView = view.findViewById(R.id.textView_current_seed);
+
         mSearchEditText = view.findViewById(R.id.editText_search);
         Button clearButton = view.findViewById(R.id.button_clear);
         clearButton.setOnClickListener(this);
@@ -102,18 +101,13 @@ public class PersonsListFragment extends Fragment implements View.OnClickListene
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.button_apply:
-                // TODO: 7/8/2019 change seed
-                seed = mSeedEditText.getText().toString();
-                mCurrentSeedTextView.setText(seed);
-                getPeople(NUMBER_OF_PERSONS, seed);
+                mSeed = mSeedEditText.getText().toString();
+                mCurrentSeedTextView.setText(mSeed);
+                getPeople(NUMBER_OF_PERSONS, mSeed);
+                mCurrentSeedTextView.setText("Current seed: "+mSeed);
                 break;
             case R.id.button_clear:
                 mSearchEditText.setText("");
-                break;
-            case R.id.recyclerView_people:
-                Intent intent = new Intent(getActivity(), PersonActivity.class);
-//                intent.putExtra()
-                startActivity(intent);
                 break;
         }
     }
@@ -123,8 +117,8 @@ public class PersonsListFragment extends Fragment implements View.OnClickListene
         for (Person person : mPeople) {
             if (person.getName().getFirstName().toLowerCase()
                     .contains(key.toLowerCase()) ||
-                person.getName().getLastName().toLowerCase()
-                    .contains(key.toLowerCase())
+                    person.getName().getLastName().toLowerCase()
+                            .contains(key.toLowerCase())
             ) {
                 result.add(person);
             }
@@ -159,12 +153,14 @@ public class PersonsListFragment extends Fragment implements View.OnClickListene
 
     }
 
-    private class PeopleViewHolder extends RecyclerView.ViewHolder {
+    private class PeopleViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         private ImageView mPhotoImageView;
         private TextView mFirstNameTextView;
         private TextView mLastNameTextView;
         private TextView mDateOfBirthTextView;
         private TextView mAgeTextView;
+
+        private Person mPerson;
 
         public PeopleViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -173,14 +169,29 @@ public class PersonsListFragment extends Fragment implements View.OnClickListene
             mLastNameTextView = itemView.findViewById(R.id.textView_lastname);
             mDateOfBirthTextView = itemView.findViewById(R.id.textView_date_of_bith);
             mAgeTextView = itemView.findViewById(R.id.textView_age);
+            itemView.setOnClickListener(this);
         }
 
         public void bind(Person person) {
             Picasso.get().load(person.getPicture().getThumbnail()).into(mPhotoImageView);
             mFirstNameTextView.setText(person.getName().getFirstName());
             mLastNameTextView.setText(person.getName().getLastName());
-            mDateOfBirthTextView.setText(person.getDateOfBirth().getDate());
-            mAgeTextView.setText(new StringBuilder().append(R.string.age).append(" ").append(person.getDateOfBirth().getAge()).toString());
+            mDateOfBirthTextView.setText(person.getDateOfBirthday().getDate());
+            mAgeTextView.setText("Age: "+person.getDateOfBirthday().getAge());
+
+            mPerson = person;
+        }
+
+        @Override
+        public void onClick(View v) {
+            Intent intent = newIntent(mPerson);
+            startActivity(intent);
+        }
+
+        public Intent newIntent(Person person) {
+            Intent intent = new Intent(getActivity(), PersonActivity.class);
+            intent.putExtra(Person.class.getCanonicalName(), person);
+            return intent;
         }
     }
 

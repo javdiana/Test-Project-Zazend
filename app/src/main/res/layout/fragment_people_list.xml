@@ -28,7 +28,8 @@
             android:inputType="textPersonName"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            android:focusable="auto"/>
 
         <Button
             android:id="@+id/button_apply"
@@ -80,7 +81,8 @@
             android:inputType="textPersonName"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView_current_seed" />
+            app:layout_constraintTop_toBottomOf="@+id/textView_current_seed"
+            android:focusable="auto"/>
 
         <Button
             android:id="@+id/button_clear"

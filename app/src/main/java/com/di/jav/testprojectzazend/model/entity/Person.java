@@ -1,12 +1,15 @@
 package com.di.jav.testprojectzazend.model.entity;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class Person {
+public class Person implements Parcelable {
     @SerializedName("gender")
     @Expose
-    private String gender;
+    private String mGender;
 
     @SerializedName("name")
     @Expose
@@ -14,31 +17,31 @@ public class Person {
 
     @SerializedName("location")
     @Expose
-    private Location location;
+    private Location mLocation;
 
     @SerializedName("email")
     @Expose
-    private String email;
+    private String mEmail;
 
     @SerializedName("login")
     @Expose
-    private Login login;
+    private Login mLogin;
 
     @SerializedName("dob")
     @Expose
-    private DateOfBirthday dateOfBirth;
+    private DateOfBirthday mDateOfBirthday;
 
     @SerializedName("registered")
     @Expose
-    private Registered registered;
+    private Registered mRegistered;
 
     @SerializedName("phone")
     @Expose
-    private String phone;
+    private String mPhone;
 
     @SerializedName("cell")
     @Expose
-    private String cell;
+    private String mCell;
 
     @SerializedName("id")
     @Expose
@@ -50,28 +53,15 @@ public class Person {
 
     @SerializedName("nat")
     @Expose
-    private String nat;
+    private String mNat;
 
-    public Person(Id id, Name name, String gender, DateOfBirthday dateOfBirth, Picture picture, String email, Login login, Registered registered, String phone, String cell, String nat) {
-        mId = id;
-        mName = name;
-        this.gender = gender;
-        this.dateOfBirth = dateOfBirth;
-        mPicture = picture;
-        this.email = email;
-        this.login = login;
-        this.registered = registered;
-        this.phone = phone;
-        this.cell = cell;
-        this.nat = nat;
-    }
 
     public Location getLocation() {
-        return location;
+        return mLocation;
     }
 
     public void setLocation(Location location) {
-        this.location = location;
+        this.mLocation = location;
     }
 
     public Id getId() {
@@ -90,12 +80,12 @@ public class Person {
         mName = name;
     }
 
-    public DateOfBirthday getDateOfBirth() {
-        return dateOfBirth;
+    public DateOfBirthday getDateOfBirthday() {
+        return mDateOfBirthday;
     }
 
-    public void setDateOfBirth(DateOfBirthday dateOfBirth) {
-        this.dateOfBirth = dateOfBirth;
+    public void setDateOfBirthday(DateOfBirthday dateOfBirthday) {
+        this.mDateOfBirthday = dateOfBirthday;
     }
 
     public Picture getPicture() {
@@ -107,58 +97,95 @@ public class Person {
     }
 
     public String getGender() {
-        return gender;
+        return mGender;
     }
 
     public void setGender(String gender) {
-        this.gender = gender;
+        this.mGender = gender;
     }
 
     public String getEmail() {
-        return email;
+        return mEmail;
     }
 
     public void setEmail(String email) {
-        this.email = email;
+        this.mEmail = email;
     }
 
     public Login getLogin() {
-        return login;
+        return mLogin;
     }
 
     public void setLogin(Login login) {
-        this.login = login;
+        this.mLogin = login;
     }
 
     public Registered getRegistered() {
-        return registered;
+        return mRegistered;
     }
 
     public void setRegistered(Registered registered) {
-        this.registered = registered;
+        this.mRegistered = registered;
     }
 
     public String getPhone() {
-        return phone;
+        return mPhone;
     }
 
     public void setPhone(String phone) {
-        this.phone = phone;
+        this.mPhone = phone;
     }
 
     public String getCell() {
-        return cell;
+        return mCell;
     }
 
     public void setCell(String cell) {
-        this.cell = cell;
+        this.mCell = cell;
     }
 
     public String getNat() {
-        return nat;
+        return mNat;
     }
 
     public void setNat(String nat) {
-        this.nat = nat;
+        this.mNat = nat;
     }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeStringArray(new String[]{mName.getFirstName(), mName.getLastName(), mDateOfBirthday.getDate(), mGender, mLocation.getCity(), mLocation.getStreet(), mEmail});
+    }
+
+    public static final Parcelable.Creator<Person> CREATOR = new Parcelable.Creator<Person>() {
+
+        @Override
+        public Person createFromParcel(Parcel source) {
+            return new Person(source);
+        }
+
+        @Override
+        public Person[] newArray(int size) {
+            return new Person[size];
+        }
+    };
+
+    private Person(Parcel parcel) {
+        String[] data = new String[7];
+        parcel.readStringArray(data);
+
+        mName.setFirstName(data[0]);
+        mName.setLastName(data[1]);
+        mDateOfBirthday.setDate(data[2]);
+        setGender(data[3]);
+        mLocation.setCity(data[4]);
+        mLocation.setStreet(data[5]);
+        setEmail(data[6]);
+    }
+
 }

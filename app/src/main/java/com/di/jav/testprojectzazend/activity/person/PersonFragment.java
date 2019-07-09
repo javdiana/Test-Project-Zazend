@@ -12,6 +12,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.di.jav.testprojectzazend.R;
+import com.di.jav.testprojectzazend.model.entity.Person;
+import com.squareup.picasso.Picasso;
 
 public class PersonFragment extends Fragment {
     private ImageView mLargeImageView;
@@ -21,8 +23,18 @@ public class PersonFragment extends Fragment {
     private TextView mLocationTextView;
     private TextView mEmailTextView;
 
+    private Person mPerson;
+
     public static PersonFragment newInstance() {
         return new PersonFragment();
+    }
+
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setRetainInstance(true);
+
+        mPerson = getActivity().getIntent().getParcelableExtra(Person.class.getCanonicalName());
     }
 
     @Nullable
@@ -31,13 +43,24 @@ public class PersonFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_person, container, false);
 
         mLargeImageView = view.findViewById(R.id.imageView_large_image);
-        mNameTextView = view.findViewById(R.id.textView_name);
-        mBirthTextView = view.findViewById(R.id.textView_birth);
-        mGenderTextView = view.findViewById(R.id.textView_gender);
-        mLocationTextView = view.findViewById(R.id.textView_location);
-        mEmailTextView = view.findViewById(R.id.textView_email);
-
         setMinSizeForImage(view);
+        Picasso.get().load(mPerson.getPicture().getThumbnail()).into(mLargeImageView);
+
+        mNameTextView = view.findViewById(R.id.textView_name);
+        mNameTextView.setText(new StringBuilder().append(mPerson.getName().getFirstName()).append(" ").append(mPerson.getName().getFirstName()).toString());
+
+        mBirthTextView = view.findViewById(R.id.textView_birth);
+        mBirthTextView.setText(mPerson.getDateOfBirthday().getDate());
+
+        mGenderTextView = view.findViewById(R.id.textView_gender);
+        mGenderTextView.setText(mPerson.getGender());
+
+        mLocationTextView = view.findViewById(R.id.textView_location);
+        mLocationTextView.setText(new StringBuilder().append(mPerson.getLocation().getCity()).append(" ").append(mPerson.getLocation().getStreet()).toString());
+
+        mEmailTextView = view.findViewById(R.id.textView_email);
+        mEmailTextView.setText(mPerson.getEmail());
+
 
         return view;
     }
@@ -51,6 +74,5 @@ public class PersonFragment extends Fragment {
 
         mLargeImageView.setMinimumHeight(height - height / 20);
         mLargeImageView.setMinimumWidth(width - 8);
-        int i = 0;
     }
 }
