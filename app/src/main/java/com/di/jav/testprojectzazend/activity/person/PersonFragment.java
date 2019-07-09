@@ -9,6 +9,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.di.jav.testprojectzazend.R;
@@ -23,7 +24,7 @@ public class PersonFragment extends Fragment {
     private TextView mLocationTextView;
     private TextView mEmailTextView;
 
-    private Person mPerson;
+    //private Person mPerson;
 
     public static PersonFragment newInstance() {
         return new PersonFragment();
@@ -34,7 +35,7 @@ public class PersonFragment extends Fragment {
         super.onCreate(savedInstanceState);
         setRetainInstance(true);
 
-        mPerson = getActivity().getIntent().getParcelableExtra(Person.class.getCanonicalName());
+        //mPerson = getActivity().getIntent().getParcelableExtra(Person.class.getCanonicalName());
     }
 
     @Nullable
@@ -43,29 +44,28 @@ public class PersonFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_person, container, false);
 
         mLargeImageView = view.findViewById(R.id.imageView_large_image);
-        setMinSizeForImage(view);
-        Picasso.get().load(mPerson.getPicture().getThumbnail()).into(mLargeImageView);
+        setMinSizeForImage();
+        //Picasso.get().load(mPerson.getPicture().getThumbnail()).into(mLargeImageView);
 
         mNameTextView = view.findViewById(R.id.textView_name);
-        mNameTextView.setText(new StringBuilder().append(mPerson.getName().getFirstName()).append(" ").append(mPerson.getName().getFirstName()).toString());
+        //mNameTextView.setText(new StringBuilder().append(mPerson.getName().getFirstName()).append(" ").append(mPerson.getName().getFirstName()).toString());
 
         mBirthTextView = view.findViewById(R.id.textView_birth);
-        mBirthTextView.setText(mPerson.getDateOfBirthday().getDate());
+       // mBirthTextView.setText(mPerson.getDateOfBirthday().getDate());
 
         mGenderTextView = view.findViewById(R.id.textView_gender);
-        mGenderTextView.setText(mPerson.getGender());
+        //mGenderTextView.setText(mPerson.getGender());
 
         mLocationTextView = view.findViewById(R.id.textView_location);
-        mLocationTextView.setText(new StringBuilder().append(mPerson.getLocation().getCity()).append(" ").append(mPerson.getLocation().getStreet()).toString());
+        //mLocationTextView.setText(new StringBuilder().append(mPerson.getLocation().getCity()).append(" ").append(mPerson.getLocation().getStreet()).toString());
 
         mEmailTextView = view.findViewById(R.id.textView_email);
-        mEmailTextView.setText(mPerson.getEmail());
-
+        //mEmailTextView.setText(mPerson.getEmail());
 
         return view;
     }
 
-    private void setMinSizeForImage(View view) {
+    private void setMinSizeForImage() {
         DisplayMetrics metrics = new DisplayMetrics();
         getActivity().getWindowManager().getDefaultDisplay().getMetrics(metrics);
 

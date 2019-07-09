@@ -184,7 +184,7 @@ public class PersonsListFragment extends Fragment implements View.OnClickListene
 
         @Override
         public void onClick(View v) {
-            Intent intent = newIntent(mPerson);
+            Intent intent = new Intent(getActivity(), PersonActivity.class);//newIntent(mPerson);
             startActivity(intent);
         }
 
