@@ -25,43 +25,59 @@ public class PersonFragment extends Fragment {
 
     private Person mPerson;
 
-    public static PersonFragment newInstance() {
-        return new PersonFragment();
+    private static final String EXTRA_PERSON = "com.di.jav.testprojectzazend.person";
+
+    public static PersonFragment newInstance(Person person) {
+        Bundle args = new Bundle();
+        args.putParcelable(EXTRA_PERSON, person);
+
+        PersonFragment fragment = new PersonFragment();
+        fragment.setArguments(args);
+        return fragment;
     }
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setRetainInstance(true);
+        if (savedInstanceState != null) {
+            mPerson = savedInstanceState.getParcelable(EXTRA_PERSON);
+        }
 
-        mPerson = getActivity().getIntent().getParcelableExtra(Person.class.getCanonicalName());
+        mPerson = getArguments().getParcelable(EXTRA_PERSON);
     }
 
     @Nullable
     @Override
-    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup
+            container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_person, container, false);
 
         mLargeImageView = view.findViewById(R.id.imageView_large_image);
         setMinSizeForImage();
-        Picasso.get().load(mPerson.getPicture().getThumbnail()).into(mLargeImageView);
+        Picasso.get().load(mPerson.getPicture().getLarge()).into(mLargeImageView);
 
         mNameTextView = view.findViewById(R.id.textView_name);
-        mNameTextView.setText(new StringBuilder().append(mPerson.getName().getFirstName()).append(" ").append(mPerson.getName().getFirstName()).toString());
+        mNameTextView.setText(new StringBuilder().append(mPerson.getName().getFirstName()).append(" ").append(mPerson.getName().getLastName()).toString());
 
         mBirthTextView = view.findViewById(R.id.textView_birth);
-        mBirthTextView.setText(mPerson.getDateOfBirthday().getDate());
+        mBirthTextView.setText("Bith: " + mPerson.getDateOfBirthday().getDate());
 
         mGenderTextView = view.findViewById(R.id.textView_gender);
-        mGenderTextView.setText(mPerson.getGender());
+        mGenderTextView.setText("Gender: " + mPerson.getGender());
 
         mLocationTextView = view.findViewById(R.id.textView_location);
-        mLocationTextView.setText(new StringBuilder().append(mPerson.getLocation().getCity()).append(" ").append(mPerson.getLocation().getStreet()).toString());
+        mLocationTextView.setText("Location: " + mPerson.getLocation().getCity() + " " + mPerson.getLocation().getStreet());
 
         mEmailTextView = view.findViewById(R.id.textView_email);
-        mEmailTextView.setText(mPerson.getEmail());
+        mEmailTextView.setText("Email: " + mPerson.getEmail());
 
         return view;
+    }
+
+    @Override
+    public void onSaveInstanceState(@NonNull Bundle outState) {
+        super.onSaveInstanceState(outState);
+        outState.putParcelable(EXTRA_PERSON, mPerson);
     }
 
     private void setMinSizeForImage() {

@@ -159,7 +159,7 @@ public class Person implements Parcelable {
 
     @Override
     public void writeToParcel(Parcel dest, int flags) {
-        dest.writeStringArray(new String[]{mName.getFirstName(), mName.getLastName(), mDateOfBirthday.getDate(), mGender, mLocation.getCity(), mLocation.getStreet(), mEmail});
+        dest.writeStringArray(new String[]{mName.getFirstName(), mName.getLastName(), mDateOfBirthday.getDate(), mGender, mLocation.getCity(), mLocation.getStreet(), mEmail, mPicture.getLarge()});
     }
 
     public static final Parcelable.Creator<Person> CREATOR = new Parcelable.Creator<Person>() {
@@ -176,7 +176,7 @@ public class Person implements Parcelable {
     };
 
     private Person(Parcel parcel) {
-        String[] data = new String[7];
+        String[] data = new String[8];
         parcel.readStringArray(data);
 
         mName.setFirstName(data[0]);
@@ -186,6 +186,7 @@ public class Person implements Parcelable {
         mLocation.setCity(data[4]);
         mLocation.setStreet(data[5]);
         setEmail(data[6]);
+        mPicture.setLarge(data[7]);
     }
 
 }

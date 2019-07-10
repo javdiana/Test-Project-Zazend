@@ -16,6 +16,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -48,6 +49,10 @@ public class PersonsListFragment extends Fragment implements View.OnClickListene
 
     private List<Person> mPeople;
     private String mSeed;
+
+    private ProgressBar mProgressBar;
+
+    private static final String EXTRA_PERSON = "com.di.jav.testprojectzazend.person";
 
     public static PersonsListFragment newInstance() {
         return new PersonsListFragment();
@@ -104,6 +109,8 @@ public class PersonsListFragment extends Fragment implements View.OnClickListene
         Button clearButton = view.findViewById(R.id.button_clear);
         clearButton.setOnClickListener(this);
 
+        mProgressBar = view.findViewById(R.id.progressBar);
+        mProgressBar.setVisibility(View.VISIBLE);
         return view;
     }
 
@@ -114,6 +121,7 @@ public class PersonsListFragment extends Fragment implements View.OnClickListene
             Log.e(TAG, npe.getMessage());
             Toast.makeText(getActivity(), R.string.could_not_load_data, Toast.LENGTH_SHORT).show();
         }
+        mProgressBar.setVisibility(View.INVISIBLE);
     }
 
     @Override
@@ -173,6 +181,7 @@ public class PersonsListFragment extends Fragment implements View.OnClickListene
 
     }
 
+
     private class PeopleViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         private ImageView mPhotoImageView;
         private TextView mFirstNameTextView;
@@ -204,14 +213,8 @@ public class PersonsListFragment extends Fragment implements View.OnClickListene
 
         @Override
         public void onClick(View v) {
-            Intent intent = newIntent(mPerson);
+            Intent intent = PersonActivity.newIntent(getActivity(), mPerson);
             startActivity(intent);
-        }
-
-        public Intent newIntent(Person person) {
-            Intent intent = new Intent(getActivity(), PersonActivity.class);
-            intent.putExtra(Person.class.getCanonicalName(), person);
-            return intent;
         }
     }
 
