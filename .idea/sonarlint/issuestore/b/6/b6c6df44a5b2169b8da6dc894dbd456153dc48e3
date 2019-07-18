@@ -1,7 +1,6 @@
 
-squid:S1450"^Remove the "mGenderTextView" field and declare it as a local variable in the relevant methods.(Ë„Éÿÿÿÿÿ8´ºòÁ½-
-zsquid:S1450"]Remove the "mEmailTextView" field and declare it as a local variable in the relevant methods.(Ü²B8­Í™º½-
-ƒsquid:S1450"`Remove the "mLocationTextView" field and declare it as a local variable in the relevant methods.(½›‘åüÿÿÿÿ8­Í™º½-
-squid:S1450"\Remove the "mNameTextView" field and declare it as a local variable in the relevant methods.(³×øÿÿÿÿ8Ì‹™º½-
-€squid:S1450"]Remove the "mBirthTextView" field and declare it as a local variable in the relevant methods.(™¢ «ûÿÿÿÿ8·ŒïÁ½-
-Isquid:S1172C"+Remove this unused method parameter "view".(®«Ú¾8“·àº½-
+squid:S1450"\Remove the "mNameTextView" field and declare it as a local variable in the relevant methods.(³×øÿÿÿÿ8…˜±Ç½-
+zsquid:S1450"]Remove the "mEmailTextView" field and declare it as a local variable in the relevant methods.(Ü²B8…˜±Ç½-
+squid:S1450"^Remove the "mGenderTextView" field and declare it as a local variable in the relevant methods.(Ë„Éÿÿÿÿÿ8…˜±Ç½-
+€squid:S1450"]Remove the "mBirthTextView" field and declare it as a local variable in the relevant methods.(™¢ «ûÿÿÿÿ8…˜±Ç½-
+ƒsquid:S1450"`Remove the "mLocationTextView" field and declare it as a local variable in the relevant methods.(½›‘åüÿÿÿÿ8…˜±Ç½-

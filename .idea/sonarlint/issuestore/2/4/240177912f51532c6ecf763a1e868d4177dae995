@@ -1,7 +1,7 @@
 
-nsquid:CommentedOutCodeLineU"<This block of commented-out lines of code should be removed.(î¹¼ üÿÿÿÿ8çñ–»½-
-\"squid:SwitchLastCaseIsDefaultChecke""Add a default case to this switch.(×“¾ñùÿÿÿÿ8ªîæ¶½-
-nsquid:S1301e"KReplace this "switch" statement by "if" statements to increase readability.(×“¾ñùÿÿÿÿ8ì¥ô¿½-
-fsquid:UnusedPrivateMethodr":Remove this unused private "findByFirstOrLastName" method.(ÂÚ°õ8›‚Ú¾½-
-Usquid:S1135g"2Complete the task associated to this TODO comment.(§„†ÿÿÿÿÿ8ªîæ¶½-
-Gsquid:S1148"#Use a logger to log this exception.(€ÉÔ…ýÿÿÿÿ8¦ì¾½-
+osquid:CommentedOutCodeLine³"<This block of commented-out lines of code should be removed.(¶£®Úûÿÿÿÿ8£Ç§¿-
+Ÿsquid:S1186N"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(«û³±8£Ç§¿-
+Ÿsquid:S1186Y"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(±¾ê8êŠ›Š¾-
+Nsquid:S1068 "0Remove this unused "EXTRA_PERSON" private field.(ÿÄ‹Ò8ÓŠÆØ½-
+\"squid:SwitchLastCaseIsDefaultCheckr""Add a default case to this switch.(×“¾ñùÿÿÿÿ8êŠ›Š¾-
+nsquid:S1301r"KReplace this "switch" statement by "if" statements to increase readability.(×“¾ñùÿÿÿÿ8êŠ›Š¾-

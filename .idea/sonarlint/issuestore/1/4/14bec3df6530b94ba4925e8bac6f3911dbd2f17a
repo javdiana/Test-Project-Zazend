@@ -1,0 +1,4 @@
+
+Gsquid:S1444")Make this "public static url" field final(éç¹8£Ç§¿-
+Ysquid:S2696*"6Make the enclosing method "static" or remove this set.(‰ËÜ·üÿÿÿÿ8£Ç§¿-
+„"squid:ClassVariableVisibilityCheck"OMake url a static final constant or non-public and provide accessors if needed.(éç¹8£Ç§¿-

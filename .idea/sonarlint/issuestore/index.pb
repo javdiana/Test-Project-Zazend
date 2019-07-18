@@ -41,3 +41,13 @@ Zapp/src/main/java/com/di/jav/testprojectzazend/model/service/http/UserGenerator
 Rapp/src/main/java/com/di/jav/testprojectzazend/activity/person/PersonActivity.java,2\f\2f82e37d98daba09bd9de94db715f41616f7c1fc
 Ç
 Rapp/src/main/java/com/di/jav/testprojectzazend/activity/person/PersonFragment.java,b\6\b6c6df44a5b2169b8da6dc894dbd456153dc48e3
+Ö
+Uapp/src/main/java/com/di/jav/testprojectzazend/model/repository/PersonDownloader.java,f\1\f18040bdf4a4e7bcf23260692c6c4fd37ce0852d
+à
+Xapp/src/main/java/com/di/jav/testprojectzazend/activity/personslist/GetUserCallBack.java,a\2\a24cca49ac0dce1da38d13836a72b71bdd402f9e
+ê
+`app/src/main/java/com/di/jav/testprojectzazend/activity/personslist/PersonsListPresenterImp.java,e\a\eaccfcb54ea6ec0d2da3320b1ef7a3a254c668e7
+Ö
+Uapp/src/main/java/com/di/jav/testprojectzazend/activity/personslist/IPersonsList.java,b\f\bfd6c6c69334d44351ce0582270ffb8812190d4b
+É
+Sapp/src/main/java/com/di/jav/testprojectzazend/model/repository/UserRepository.java,1\b\1bac3ec19038b31a434b94c47f03a89a7278a840

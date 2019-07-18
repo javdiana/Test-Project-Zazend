@@ -16,6 +16,7 @@ public class UserGeneratorClient {
     private IUserGeneratorService api;
     private static final String RANDOM_USER_BASE_URL = "https://randomuser.me/";
 
+    public static String url;
 
     public static UserGeneratorClient getInstance() {
         if (sOutInstance == null) {
@@ -37,7 +38,8 @@ public class UserGeneratorClient {
         api = retrofit.create(IUserGeneratorService.class);
     }
 
-    public Observable<Result> getPeople(int numberOfPersons, String seed) {
+    public Observable<Result> getPeople(int numberOfPersons, String seed) {//add interface for getUrl
+        url = RANDOM_USER_BASE_URL + "api/?results=" + numberOfPersons + "&seed=" + seed;//
         return api.getPeople(numberOfPersons, seed);
     }
 }

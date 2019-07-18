@@ -1,0 +1,5 @@
+
+9squid:S3626="Remove this redundant jump.(ûÁİ…8£Ç§¿-
+Jsquid:S1068",Remove this unused "mHasQuit" private field.(“®ô¾8ÏÍŠ¾-
+usquid:S1450"WRemove the "mHasQuit" field and declare it as a local variable in the relevant methods.(“®ô¾8ğ—Š¾-
+isquid:CommentedOutCodeLine@"<This block of commented-out lines of code should be removed.(™”ú8£Ç§¿-

@@ -1,0 +1,8 @@
+
+xsquid:S1450"\Remove the "mSubscription" field and declare it as a local variable in the relevant methods.(´š¾üÿÿÿÿ
+8squid:S1170"!Make this final field static too.(ŞÁ–
+Zsquid:UselessImportCheck"1Remove this unused import 'java.util.Collection'.(¹ÉĞšùÿÿÿÿ
+Isquid:S1135M"2Complete the task associated to this TODO comment.(…¦èù
+Nsquid:S1135+"2Complete the task associated to this TODO comment.(ï²Ë§ûÿÿÿÿ
+Msquid:S1068"1Remove this unused "mSubscription" private field.(´š¾üÿÿÿÿ
+fsquid:S00116"NRename this field "TAG" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ŞÁ–
